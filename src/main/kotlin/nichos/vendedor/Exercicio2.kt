@@ -3,28 +3,24 @@ package nichos.vendedor
 import java.text.NumberFormat
 import java.util.Locale
 
-fun verSeHeElegivelParaDesconto(quantidade: Int, valorTotal: Double): Boolean{
-    val heElegivel : Boolean
-    if(quantidade > 5 || valorTotal > 500.0){
-        heElegivel = true
-    }else{
-        heElegivel = false
-    }
-    return heElegivel
+fun verSeElegivelParaDesconto(quantidade: Int, valorTotal: Double): Boolean{
+
+    return quantidade > 5 || valorTotal > 500.0
 }
 
 fun calculandoDesconto(valorTotal: Double): Double{
-    val valorComDesconto = valorTotal - ((valorTotal * 10) / 100)
-    return valorComDesconto
+
+    return valorTotal - ((valorTotal * 10) / 100)
 }
 
 fun main(){
+
     val formatoMoeda = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR"))
 
-    if(verSeHeElegivelParaDesconto(4, 550.0)){
+    if(verSeElegivelParaDesconto(4, 550.0)){
         println(formatoMoeda.format(calculandoDesconto(550.0)))
     }else{
-        println("Você não está elegivel para desconto.")
+        println("Você não está elegível para desconto.")
     }
 }
 
