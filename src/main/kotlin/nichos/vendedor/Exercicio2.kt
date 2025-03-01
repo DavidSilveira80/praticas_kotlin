@@ -17,7 +17,7 @@ fun main(){
 
     val formatoMoeda = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR"))
 
-    if(verSeElegivelParaDesconto(4, 550.0)){
+    if(verSeElegivelParaDesconto(4, 500.0)){
         println(formatoMoeda.format(calculandoDesconto(550.0)))
     }else{
         println("Você não está elegível para desconto.")
