@@ -25,5 +25,5 @@ fun main(){
            continue
        }
    }
-    println("Número Negativo Detectado!")
+    println("Número Negativo Detectado!.")
 }
