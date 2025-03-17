@@ -64,6 +64,17 @@ fun gerarRelatorio(vendas: String, comissao: String, bonus: String, faltamMeta: 
         |Faltam $faltamMeta para a meta de R${'$'} 5000,00
     """.trimMargin()
     println(saida)
+    println()
+}
+
+fun converteValorMonetarioParaDouble(vendas: String): Double{
+
+    val stringParaDouble = vendas
+        .replace(".", "")
+        .replace(",", ".")
+        .toDouble()
+    return stringParaDouble
+
 }
 
 fun validarVenda(venda: Double): Boolean{
@@ -75,15 +86,18 @@ fun validarVenda(venda: Double): Boolean{
 }
 
 fun main(){
-    print("Informe o valor total das suas vendas(Valor MAIOR QUE 0.0) R$: ")
-    val vendas = readln().toDouble()
+    print("Informe o valor total das suas vendas(Valor MAIOR QUE 0,0)Ex: 1.500,50 R$: ")
+    val vendas = readln()
 
-    if(validarVenda(vendas)){
-        val comissaoBasica = formatadorDeMoeda(calcularComissaoBasica(vendas))
-        val bonusMeta = formatadorDeMoeda(calcularBonusMeta(vendas))
-        val faltamParaMeta = formatadorDeMoeda(calcularQuantoFaltaParaMeta(vendas))
+    val valorTransformadoParaVerificacao = converteValorMonetarioParaDouble(vendas)
 
-        gerarRelatorio(formatadorDeMoeda(vendas), comissaoBasica, bonusMeta, faltamParaMeta)
+    if(validarVenda(valorTransformadoParaVerificacao)){
+        val comissaoBasica = formatadorDeMoeda(calcularComissaoBasica(valorTransformadoParaVerificacao))
+        val bonusMeta = formatadorDeMoeda(calcularBonusMeta(valorTransformadoParaVerificacao))
+        val faltamParaMeta = formatadorDeMoeda(calcularQuantoFaltaParaMeta(valorTransformadoParaVerificacao))
+
+        gerarRelatorio(formatadorDeMoeda(valorTransformadoParaVerificacao), comissaoBasica, bonusMeta, faltamParaMeta)
+
     }else{
         println("VALOR INVÁLIDO. VALOR MENOR QUE 0.0")
         println("TENTE NOVAMENTE.")
