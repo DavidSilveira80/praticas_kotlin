@@ -26,6 +26,10 @@ Praticar funções com parâmetros e retorno de valores,
 tratamento de erros e modularização de código, aplicando conceitos a um contexto real de vendas
 
  */
+import java.text.NumberFormat
+import java.util.Locale
+
+
 
 fun calcularComissaoBasica(vendas: Double): Double{
     val comissao10PorCento = (vendas * 10) / 100
@@ -52,12 +56,14 @@ fun calcularQuantoFaltaParaMeta(vendas: Double): Double{
     return faltam
 }
 
-fun gerarRelatorio(vendas: Double, comissao: Double, bonus: Double, faltamMeta: Double){
-    println()
-    println("A Comissão de 10% das suas vendas de R$ $vendas são de R$ $comissao")
-    println("O Bônus de 5% para vendas acima de R$ 5000.00 é de R$ $bonus")
-    println("Faltam R$ $faltamMeta para a meta de R$ 5000.00")
-    //TODO("Ver um modo mais enxuto.")
+fun gerarRelatorio(vendas: String, comissao: String, bonus: String, faltamMeta: String){
+    val saida = """
+        |
+        |A Comissão de 10% das suas vendas de  $vendas são de  $comissao
+        |O Bônus de 5% para vendas acima de R${'$'} 5000,00 é de  $bonus
+        |Faltam $faltamMeta para a meta de R${'$'} 5000,00
+    """.trimMargin()
+    println(saida)
 }
 
 fun validarVenda(venda: Double): Boolean{
@@ -68,17 +74,16 @@ fun validarVenda(venda: Double): Boolean{
     }
 }
 
-
 fun main(){
     print("Informe o valor total das suas vendas(Valor MAIOR QUE 0.0) R$: ")
     val vendas = readln().toDouble()
 
     if(validarVenda(vendas)){
-        val comissaoBasica = calcularComissaoBasica(vendas)
-        val bonusMeta = calcularBonusMeta(vendas)
-        val faltamParaMeta = calcularQuantoFaltaParaMeta(vendas)
+        val comissaoBasica = formatadorDeMoeda(calcularComissaoBasica(vendas))
+        val bonusMeta = formatadorDeMoeda(calcularBonusMeta(vendas))
+        val faltamParaMeta = formatadorDeMoeda(calcularQuantoFaltaParaMeta(vendas))
 
-        gerarRelatorio(vendas, comissaoBasica, bonusMeta, faltamParaMeta)
+        gerarRelatorio(formatadorDeMoeda(vendas), comissaoBasica, bonusMeta, faltamParaMeta)
     }else{
         println("VALOR INVÁLIDO. VALOR MENOR QUE 0.0")
         println("TENTE NOVAMENTE.")
