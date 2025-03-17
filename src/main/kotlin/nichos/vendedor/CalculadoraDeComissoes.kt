@@ -85,16 +85,23 @@ fun validarVenda(venda: Double): Boolean{
     }
 }
 
+fun formatarMoeda(valor:Double): String{
+    val formatoMoeda = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR"))
+    val valorFormatado = formatoMoeda.format(valor)
+    return valorFormatado
+}
+
 fun main(){
     print("Informe o valor total das suas vendas(Valor MAIOR QUE 0,0)Ex: 1.500,50 R$: ")
     val vendas = readln()
 
+
     val valorTransformadoParaVerificacao = converteValorMonetarioParaDouble(vendas)
 
     if(validarVenda(valorTransformadoParaVerificacao)){
-        val comissaoBasica = formatadorDeMoeda(calcularComissaoBasica(valorTransformadoParaVerificacao))
-        val bonusMeta = formatadorDeMoeda(calcularBonusMeta(valorTransformadoParaVerificacao))
-        val faltamParaMeta = formatadorDeMoeda(calcularQuantoFaltaParaMeta(valorTransformadoParaVerificacao))
+        val comissaoBasica = formatarMoeda(calcularComissaoBasica(valorTransformadoParaVerificacao))
+        val bonusMeta = formatarMoeda(calcularBonusMeta(valorTransformadoParaVerificacao))
+        val faltamParaMeta = formatarMoeda(calcularQuantoFaltaParaMeta(valorTransformadoParaVerificacao))
 
         gerarRelatorio(formatadorDeMoeda(valorTransformadoParaVerificacao), comissaoBasica, bonusMeta, faltamParaMeta)
 
