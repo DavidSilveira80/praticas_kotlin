@@ -1,4 +1,4 @@
-package reforco.classesobjetos
+package reforco.poo.classesobjetos
 
 /*
 Descrição: Neste exercício, você irá criar uma classe simples e instanciar seu primeiro

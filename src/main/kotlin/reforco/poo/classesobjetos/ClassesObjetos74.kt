@@ -1,4 +1,4 @@
-package reforco.classesobjetos
+package reforco.poo.classesobjetos
 
 /*
 Descrição: Neste exercício, você aprenderá a receber dados através do construtor de uma classe,

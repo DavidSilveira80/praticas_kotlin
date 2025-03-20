@@ -1,4 +1,4 @@
-package reforco.classesobjetos
+package reforco.poo.classesobjetos
 
 /*
 Descrição: O exercício foca em adicionar comportamentos à classe por meio da criação de

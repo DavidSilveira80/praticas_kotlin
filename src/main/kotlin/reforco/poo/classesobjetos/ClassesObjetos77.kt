@@ -1,4 +1,4 @@
-package reforco.classesobjetos
+package reforco.poo.classesobjetos
 
 /*
 Descrição: Este exercício ensina como criar múltiplos construtores (construtores sobrecarregados)
