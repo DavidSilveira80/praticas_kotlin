@@ -57,10 +57,6 @@ fun main() {
                 println("Sair")
                 break
             }
-
-            else -> {
-                println("Opção inválida")
-            }
         }
     }
 }
